@@ -4,6 +4,26 @@ el.id,
 
 el.getAttribute('href'),
 
+function attr(elem){
+ var m=elem.attributes, l=m.length, i=0, r=[],e,v;
+ while(i<l){
+  e=m[i++];
+  v=e.nodeName;
+  if(v!=='id' && v!=='class' && v.substring(0,5)!=='data-'){
+	r[i]='[';
+	r[i+1]=;
+	v=e.nodeValue;
+	r[i+2]=v?'='+v:'';
+	r[i+3]=']';
+  };
+ };
+ return r.join('');
+}
+
+
+
+
+
 var pathname = el.pathname || '',
 						filename = (pathname.match(/\/([^\/]+\.[^\/\.]+)$/i) || [, ''])[1];
 					if (filename){
