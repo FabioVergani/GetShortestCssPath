@@ -1,0 +1,81 @@
+el.tagName.toLowerCase();
+
+el.id,
+
+el.getAttribute('href'),
+
+var pathname = el.pathname || '',
+						filename = (pathname.match(/\/([^\/]+\.[^\/\.]+)$/i) || [, ''])[1];
+					if (filename){
+						s = tagName + "[href*='" + filename + "']" + selector;
+						if (qsm(s, originalEl)) return s;
+					}
+					// URL hostname
+					var hostname = el.hostname;
+					if (hostname){
+						s = tagName + "[href*='" + hostname + "']" + selector;
+						if (qsm(s, originalEl)) return s;
+					}
+					// "short" URL pathname, ignore the longer ones (50 chars max)
+					if (pathname && pathname.length <= 50){
+						s = tagName + "[href*='" + pathname + "']" + selector;
+						if (qsm(s, originalEl)) return s;
+					}
+
+
+var src = el.getAttribute('src'),
+						pathname = (function(src){
+							var a = d.createElement('a');
+							a.href = src;
+							var pathname = a.pathname;
+							a = null;
+							return pathname;
+						})(src),
+						filename = (pathname.match(/\/([^\/]+\.[^\/\.]+)$/i) || [, ''])[1];
+					if (filename){
+						var s = tagName + "[src*='" + filename + "']" + selector;
+						if (qsm(s, originalEl)) return s;
+					}
+
+el.getAttribute('name');
+
+
+var uniqueClass;
+			if (className){
+				var uniqueClassCount = Infinity;
+				for (var i=0, l=classList.length; i<l; i++){
+					var c = classList[i],
+						count = d.getElementsByClassName(c).length;
+					if (count < uniqueClassCount){
+						uniqueClassCount = count;
+						uniqueClass = cssEscape(c);
+					}
+				}
+				var s = tagName + '.' + uniqueClass + selector;
+				if (qsm(s, originalEl)) return s;
+
+				// If className can't work and the element has an ID, try combine both.
+				// Eg: div[id*='id'].class
+				if (id){
+					s = tagName + "[id='" + id + "']." + uniqueClass + selector;
+					if (qsm(s, originalEl)) return s;
+				}
+			}
+
+				if (index == 1){
+					pseudoChild = ':first-child';
+				} else if (index == siblingsLength){
+					pseudoChild = ':last-child';
+				} else {
+					pseudoChild = ':nth-child(' + index + ')';
+				}
+
+  function convertAttrsToCSS(elem) {
+    var ignoreList = ['class'];
+    var attrs = [].slice.call(elem.attributes).filter(function(attr) {
+      return ignoreList.indexOf(attr.nodeName) < 0
+    });
+    return attrs.map(function(a){
+      return ['[',a.nodeName,'="',a.nodeValue,'"]'].join('');
+    }).join('');
+  }
