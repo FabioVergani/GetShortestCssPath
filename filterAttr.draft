@@ -1,0 +1,14 @@
+//----------------------------------------------------------------------------------------------------------------
+function filterAttr(o){
+ var m=o.attributes, l=m.length, r=Array(l), i=0, e,
+ f=function(t){var m=r,s=t,i;while((i=m.indexOf(s)) !== -1){m.splice(i,1);};};
+ while(i<l){e=m[i];r[i++]=e.nodeName;};
+ f('id');f('class');
+
+ return r;
+}
+//----------------------------------------------------------------------------------------------------------------
+//test:
+var tester=filterAttr(document.getElementById("paragraph"));
+console.dir(tester);
+console.dir(tester[0]);
