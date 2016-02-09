@@ -1,14 +1,16 @@
 //----------------------------------------------------------------------------------------------------------------
 function filterAttr(o){
- var m=o.attributes, l=m.length, r=Array(l), i=0, e,
- f=function(t){var m=r,s=t,i;while((i=m.indexOf(s)) !== -1){m.splice(i,1);};};
+ var m=o.attributes, l=m.length, r=Array(l), i=0, e,f;
  while(i<l){e=m[i];r[i++]=e.nodeName;};
- f('id');f('class');
-
+ f=function(t){var m=r,s=t,i;while((i=m.indexOf(s)) !== -1){m.splice(i,1);};};
+ f('id');
+ f('class');
+ i=0;
+ l=r.length-1;
+ while(i<l){e=r[i];if(e.substring(0,5)==='data-'){r.splice(i,1);};i++;};
  return r;
 }
 //----------------------------------------------------------------------------------------------------------------
 //test:
 var tester=filterAttr(document.getElementById("paragraph"));
 console.dir(tester);
-console.dir(tester[0]);
